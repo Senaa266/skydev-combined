@@ -1,0 +1,54 @@
+/* === PORTAL GLOBAL STYLES === */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --secondary-blue: #00aaff; /* A lighter blue for the gradient */
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --success-glow: rgba(40, 167, 69, 0.7);
+  --error-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+
+  /* Backgrounds and Surfaces */
+  --bg-color: #0a192f; /* Dark Navy Blue */
+  --surface-color: #112240; /* Slightly Lighter Navy */
+  --border-color: rgba(255, 255, 255, 0.2);
+
+  /* Text */
+  --text-primary: #ccd6f6; /* Light text for dark backgrounds */
+  --text-secondary: #8892b0; /* Lighter grey for secondary text */
+  --text-on-primary: #ffffff;
+
+  /* Shadows & Radius */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

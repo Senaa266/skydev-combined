@@ -1,0 +1,302 @@
+/* === PORTAL AUTHENTICATION STYLES === */
+
+.auth-container {
+    position: relative; /* Needed for positioning the blobs */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    overflow: hidden; /* Prevent blobs from showing outside */
+}
+
+/* --- Animated Blob Shapes --- */
+.blob-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* --- THIS IS THE FIX: Ensure the container itself is the hover target --- */
+    /* It's sized to perfectly contain the blobs and the form */
+    width: 650px; /* Adjust to comfortably contain blobs and form */
+    height: 650px;
+}
+
+/* --- THIS IS THE FIX: Add a continuous rotation animation --- */
+@keyframes rotate-continuous {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.blob {
+    width: 600px; /* Make shapes larger to fully contain the form */
+    height: 600px;
+    position: absolute;
+    border: 2px solid var(--border-color); /* Unhovered state is now a subtle grey */
+    /* --- THIS IS THE FIX: Adjust transition for smooth animation start/stop --- */
+    transition: border-width 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+    opacity: 0.9; /* Slightly less opaque */
+    top: 50%;
+    left: 50%;
+    z-index: -1; /* Place blobs behind the auth-card */
+}
+
+.blob-1 {
+    /* --- THIS IS THE FIX: More organic, but not overly random, border-radius --- */
+    border-radius: 45% 55% 62% 38% / 51% 50% 55% 48%;
+    transform: translate(-50%, -50%) rotate(0deg); /* Perfectly centered */
+}
+
+.blob-2 {
+    border-radius: 36% 64% 35% 65% / 58% 45% 59% 50%;
+    transform: translate(-50%, -50%) rotate(30deg); /* Perfectly centered */
+}
+
+.blob-3 {
+    border-radius: 55% 45% 44% 56% / 50% 58% 45% 52%;
+    transform: translate(-50%, -50%) rotate(-20deg); /* Perfectly centered */
+}
+
+.blob-4 {
+    border-radius: 33% 67% 58% 42% / 45% 52% 50% 55%;
+    transform: translate(-50%, -50%) rotate(50deg); /* Perfectly centered */
+}
+
+/* Hover effects for the blobs */
+.blob-container:hover .blob {
+    border-color: var(--success-color);
+    border-width: 3px; /* --- THIS IS THE FIX: Increase thickness on hover --- */
+    opacity: 0.7; /* More opaque on hover */
+    animation: rotate-continuous 20s linear infinite; /* --- THIS IS THE FIX: Apply continuous rotation --- */
+}
+
+/* --- THIS IS THE FIX: Reduce glow and use new hover target --- */
+.blob-container:hover .blob-1 { border-color: #03eaff; box-shadow: 0 0 10px #03eaff; animation-duration: 22s; }
+.blob-container:hover .blob-2 { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; animation-duration: 18s; animation-direction: reverse; }
+.blob-container:hover .blob-3 { border-color: #1400f2; box-shadow: 0 0 10px #1400f2; animation-duration: 25s; }
+.blob-container:hover .blob-4 { border-color: #0afc1e; box-shadow: 0 0 10px #0afc1e; animation-duration: 15s; animation-direction: reverse; }
+
+/* --- THIS IS THE FIX: 3D Flip Card Styles --- */
+.flip-card {
+    background-color: transparent;
+    width: 380px;
+    height: 620px; /* --- THIS IS THE FIX: Increase height for the taller signup form --- */
+    perspective: 1000px; /* 3D effect */
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Class added by JS to flip the card */
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+}
+
+.auth-card {
+    position: relative;
+    background-color: transparent; /* Make it transparent */
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    max-width: 380px; /* Make form container smaller to fit inside blobs */
+    overflow: visible; /* Allow content to overflow if needed */
+}
+
+.auth-header {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-bottom: none; /* Remove border */
+    padding-bottom: 0.5rem; /* Adjust padding */
+}
+
+.auth-header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--light-color); /* Use the brightest text color for the main header */
+    text-shadow: 0 0 8px rgba(0,0,0,0.5); /* Shadow for readability on glow */
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+    text-shadow: 0 0 8px rgba(0,0,0,0.5); /* Shadow for readability on glow */
+}
+
+.auth-form {
+    padding: 0.2rem 1rem;
+}
+
+.form-group {
+    margin-bottom: 2rem; /* Give more space for floating labels */
+}
+
+.auth-logo {
+    max-width: 80px;
+}
+
+/* Input wrapper, floating label and icon behavior */
+.input-wrapper {
+    position: relative;
+    display: block;
+}
+
+/* Left-aligned hint (label) — label comes after the input in the DOM so we can use the sibling selector */
+.input-wrapper label {
+    position: absolute; /* --- THIS IS THE FIX: Ensure label is positioned correctly for all inputs --- */
+    left: 4px;
+    top: 14px;
+    transform-origin: left center;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    transition: transform 0.18s ease, color 0.18s ease, top 0.18s ease, font-size 0.18s ease;
+    pointer-events: none;
+}
+
+/* The input itself: only bottom border */
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 40px 8px 4px; /* top/right/bottom/left — room for right icon and left hint */
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    border-radius: 0;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    color: var(--text-on-primary); /* --- THIS IS THE FIX: Make input text white --- */
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+/* Floating / lifted state when input is focused or has content.
+   Uses :placeholder-shown, so set placeholder=" " on inputs in HTML for this to work consistently. */
+.input-wrapper input:focus ~ label,
+.input-wrapper input:not(:placeholder-shown) ~ label {
+    transform: translateY(-22px) scale(0.85);
+    color: var(--primary-color);
+    font-size: 0.78rem;
+}
+
+/* Icon on the right that animates up and changes color on focus/value */
+.input-wrapper .input-icon {
+    position: absolute;
+    right: 6px;
+    top: 15px;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: color 0.18s ease;
+}
+
+/* Lift the icon and tint it when input is active or has content */
+.input-wrapper input:focus ~ .input-icon,
+.input-wrapper input:not(:placeholder-shown) ~ .input-icon {
+    color: var(--primary-color);
+}
+
+.password-toggle-icon {
+    cursor: pointer;
+    pointer-events: all; /* Make sure the icon is clickable */
+}
+
+/* --- THIS IS THE FIX: Proper styling for form layout and button --- */
+
+.form-group.error .input-wrapper input {
+    border-color: var(--error-color);
+}
+
+.form-group.error .error-message {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    padding-left: 4px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.forgot-password-link {
+    font-size: 0.9rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-image: linear-gradient(to right, var(--primary-color) 0%, var(--secondary-blue) 70%, var(--secondary-blue) 100%);
+    color: var(--text-on-primary);
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-size: 200% auto;
+}
+
+.submit-btn:hover {
+    background-position: right center; /* Animate gradient on hover */
+}
+
+.submit-btn:disabled {
+    background-color: var(--secondary-color);
+    background-image: none;
+    cursor: not-allowed;
+}
+
+.auth-footer {
+    background-color: transparent;
+    padding: 0.75rem 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: none;
+}
+
+.auth-footer p {
+    margin: 0;
+    color: var(--text-secondary);
+    text-shadow: 0 0 8px rgba(0,0,0,0.5);
+}
+
+.flipper-link {
+    color: var(--secondary-blue);
+    font-weight: 500;
+}
+
+/* --- THIS IS THE FIX: Increase space between header and fields ONLY for login form --- */
+.flip-card-front .auth-form {
+    padding-top: 1.5rem;
+}
+
+/* --- THIS IS THE FIX: Separate styles for login form to center it vertically --- */
+.flip-card-front .auth-card {
+    /* Add top padding to push the shorter login form down, centering it. */
+    /* This doesn't affect the taller signup form. */
+    padding-top: 40px;
+}

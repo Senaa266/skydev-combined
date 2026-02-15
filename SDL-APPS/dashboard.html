@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SKY DEVELOPERS App Portal</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Shared and new CSS files -->
+    <link rel="stylesheet" href="portal-global.css" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <div class="header-logo">
+            <img src="logo.png" alt="SKY DEVELOPERS LTD Logo">
+            <span>SDL Portal</span>
+        </div>
+        <div class="user-menu">
+            <span class="user-name" id="user-name-display">Welcome, User!</span>
+            <button id="logout-btn" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="app-grid-container">
+            <h1>Your Applications</h1>
+            <div class="app-grid" id="app-grid">
+                <!-- App cards will be dynamically inserted here by JS -->
+                <!-- Example Card 1 -->
+                <a href="/sdl-management-app/" class="app-card">
+                    <div class="app-card-icon">
+                        <i class="fa-solid fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="app-card-title">SDL Management</h3>
+                    <p class="app-card-description">Manage invoices, clients, and project data.</p>
+                </a>
+
+                <!-- Example Card 2 -->
+                <a href="/finance-app/" class="app-card">
+                    <div class="app-card-icon">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3 class="app-card-title">Finance App</h3>
+                    <p class="app-card-description">Track expenses and view financial reports.</p>
+                </a>
+
+                <!-- Example Admin Card (to be shown conditionally) -->
+                <a href="admin.html" class="app-card admin-card">
+                    <div class="app-card-icon">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="app-card-title">Admin Panel</h3>
+                    <p class="app-card-description">Manage users, roles, and applications.</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Supabase & Dashboard Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="dashboard-script.js"></script>
+</body>
+</html>

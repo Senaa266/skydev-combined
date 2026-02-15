@@ -1,0 +1,144 @@
+/* === DASHBOARD STYLES === */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-logo img {
+    height: 40px;
+}
+
+.header-logo span {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-name {
+    color: var(--text-secondary);
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logout-btn:hover {
+    background-color: var(--error-color);
+    color: var(--text-on-primary);
+}
+
+.dashboard-main {
+    padding: 2rem;
+}
+
+.app-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-grid-container h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--light-color);
+}
+
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.app-card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.1);
+}
+
+.app-card.demo-locked {
+    filter: grayscale(1);
+    opacity: 0.55;
+    border-style: dashed;
+    cursor: not-allowed;
+}
+
+.app-card.demo-locked:hover {
+    transform: none;
+    border-color: var(--border-color);
+    box-shadow: none;
+}
+
+.app-card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.app-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.app-card-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Special styling for the Admin card */
+.admin-card {
+    border-color: var(--secondary-blue);
+}
+
+.admin-card .app-card-icon {
+    color: var(--secondary-blue);
+}
+
+.admin-card:hover {
+    border-color: var(--success-color);
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.15);
+}
+
+.admin-card:hover .app-card-icon {
+    color: var(--success-color);
+}
