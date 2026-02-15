@@ -123,11 +123,20 @@ function renderAppCards(apps, userRole = "client") {
     });
 }
 
-function initDemoDashboard(demoAccess) {
+async function initDemoDashboard(demoAccess) {
     const userNameDisplay = document.getElementById('user-name-display');
     userNameDisplay.textContent = `Welcome, Demo User (${demoAccess.label})!`;
 
-    const demoApps = DEMO_APP_CATALOG.map(app => ({
+    let sourceApps = DEMO_APP_CATALOG;
+    const { data: allApps, error } = await supabaseClient
+        .from('apps')
+        .select('*');
+
+    if (!error && Array.isArray(allApps) && allApps.length > 0) {
+        sourceApps = allApps;
+    }
+
+    const demoApps = sourceApps.map(app => ({
         ...app,
         demoAllowed: isDemoAppAllowed(app.name, demoAccess)
     }));
@@ -147,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (demoAccess) {
         localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(demoAccess));
-        initDemoDashboard(demoAccess);
+        await initDemoDashboard(demoAccess);
         return;
     }
 
